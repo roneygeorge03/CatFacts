@@ -46,7 +46,7 @@ namespace CatFacts
             string allFacts = "";
             while (i < source.Count)
             {
-                allFacts = allFacts +  source[i].fact ;
+                allFacts = allFacts +  source[i].fact + Environment.NewLine;
                 i++;
             }
             return allFacts;

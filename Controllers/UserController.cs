@@ -13,23 +13,26 @@ namespace CatFacts.Controllers
     public class UserController : ControllerBase
     {
         // GET: api/<UserController>
-        //summary: Get Random Fact,
-        //description": Returns a random fact,
+        // Get Random Fact,
+        // Returns a random fact,
         [HttpGet]
         public IEnumerable<string> Get()
         {
             CatLogic clgic = new CatLogic();
             yield return clgic.GetRndmFact();
+
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/<UserController>/5
-        //summary: Get a list of facts,
-        //description: Returns a a list of facts,
+        // Get a list of facts,
+        // Returns a a list of facts,
         [HttpGet("{id}")]
         public IEnumerable<string> Get(int id)
         {
             CatLogic clgic = new CatLogic();
-            yield return clgic.Getallfact(id);           
+            yield return clgic.Getallfact(id);
+            //return "value";
         }
 
         //// POST api/<UserController>
