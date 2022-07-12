@@ -42,11 +42,13 @@ namespace CatFacts
                 source = JsonSerializer.Deserialize<List<Fact>>(json);
             }
             return source;
+
+            //uncomment below code if you want to get it as a paragraph
             //int i = 0;
             //string allFacts = "";
             //while (i < source.Count)
             //{
-            //    allFacts = allFacts + source[i].fact + Environment.NewLine;
+            //    allFacts = allFacts + source[i].fact ;
             //    i++;
             //}
             //return allFacts;
