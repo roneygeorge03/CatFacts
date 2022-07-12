@@ -33,7 +33,7 @@ namespace CatFacts
             return source[r1].fact;
         }
 
-        public string Getallfact()
+        public List<Fact> Getallfact()
         {
             List<Fact> source = new List<Fact>();
             using (StreamReader r = new StreamReader("CatFacts.json"))
@@ -41,18 +41,18 @@ namespace CatFacts
                 string json = r.ReadToEnd();
                 source = JsonSerializer.Deserialize<List<Fact>>(json);
             }
-
-            int i = 0;
-            string allFacts = "";
-            while (i < source.Count)
-            {
-                allFacts = allFacts + source[i].fact + Environment.NewLine;
-                i++;
-            }
-            return allFacts;
+            return source;
+            //int i = 0;
+            //string allFacts = "";
+            //while (i < source.Count)
+            //{
+            //    allFacts = allFacts + source[i].fact + Environment.NewLine;
+            //    i++;
+            //}
+            //return allFacts;
 
         }
-        public string AddFact()
+        public List<Fact> AddFact(Fact fact)
         {
 
             List<Fact> source = new List<Fact>();
@@ -61,13 +61,13 @@ namespace CatFacts
                 string json = r.ReadToEnd();
                 source = JsonSerializer.Deserialize<List<Fact>>(json);
             }
-
+            source.Add(fact);
             string jsonString = JsonSerializer.Serialize(source, new JsonSerializerOptions() { WriteIndented = true });
-            using (StreamWriter outputFile = new StreamWriter("dataReady.json"))
+            using (StreamWriter outputFile = new StreamWriter("CatFacts.json"))
             {
                 outputFile.WriteLine(jsonString);
             }
-            return "dataReady.json";
+            return source;
         }      
 
     }

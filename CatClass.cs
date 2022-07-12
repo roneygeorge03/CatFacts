@@ -7,7 +7,7 @@ namespace CatFacts
 {
     public class Fact
     {
-        public int id { get; set; }
+       // public int id { get; set; }
         public string fact { get; set; }
         public int length { get; set; }       
     }

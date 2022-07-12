@@ -16,7 +16,7 @@ namespace CatFacts.Controllers
         // Get Random Fact,
         // Returns a random fact,
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<List<Fact>> Get()
         {
             CatLogic clgic = new CatLogic();
             yield return clgic.Getallfact();
@@ -40,11 +40,21 @@ namespace CatFacts.Controllers
         // Add new fact
         // Returns list of facts,
         [HttpPost]
-        public IEnumerable<string> Post([FromBody] string value)
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [Produces("application/json")]
+        public IEnumerable<List<Fact>> Post([FromBody] Fact fact)
         {
             CatLogic clgic = new CatLogic();
-            yield return clgic.AddFact();
+            yield return clgic.AddFact(fact);     
         }
+
+        //[HttpPost]
+        //public IEnumerable<string> Post([FromBody] string value)
+        //{
+        //    CatLogic clgic = new CatLogic();
+        //    yield return clgic.AddFact();
+        //}
 
         //// PUT api/<UserController>/5
         //[HttpPut("{id}")]
