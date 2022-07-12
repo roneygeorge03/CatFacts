@@ -19,7 +19,7 @@ namespace CatFacts
 {
     public class CatLogic
     {
-        public string GetRndmFact()
+        public string GetRndmFact(int id)
         {
             List<Fact> source = new List<Fact>();
             using (StreamReader r = new StreamReader("CatFacts.json"))
@@ -33,7 +33,7 @@ namespace CatFacts
             return source[r1].fact;
         }
 
-        public string Getallfact(int id)
+        public string Getallfact()
         {
             List<Fact> source = new List<Fact>();
             using (StreamReader r = new StreamReader("CatFacts.json"))
@@ -46,10 +46,28 @@ namespace CatFacts
             string allFacts = "";
             while (i < source.Count)
             {
-                allFacts = allFacts +  source[i].fact + Environment.NewLine;
+                allFacts = allFacts + source[i].fact + Environment.NewLine;
                 i++;
             }
             return allFacts;
+
+        }
+        public string AddFact()
+        {
+
+            List<Fact> source = new List<Fact>();
+            using (StreamReader r = new StreamReader("CatFacts.json"))
+            {
+                string json = r.ReadToEnd();
+                source = JsonSerializer.Deserialize<List<Fact>>(json);
+            }
+
+            string jsonString = JsonSerializer.Serialize(source, new JsonSerializerOptions() { WriteIndented = true });
+            using (StreamWriter outputFile = new StreamWriter("dataReady.json"))
+            {
+                outputFile.WriteLine(jsonString);
+            }
+            return "dataReady.json";
         }      
 
     }

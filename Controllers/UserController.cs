@@ -19,27 +19,32 @@ namespace CatFacts.Controllers
         public IEnumerable<string> Get()
         {
             CatLogic clgic = new CatLogic();
-            yield return clgic.GetRndmFact();
+            yield return clgic.Getallfact();
 
             //return new string[] { "value1", "value2" };
         }
 
         // GET api/<UserController>/5
         // Get a list of facts,
-        // Returns a a list of facts,
+        // Returns a list of facts,
         [HttpGet("{id}")]
         public IEnumerable<string> Get(int id)
         {
             CatLogic clgic = new CatLogic();
-            yield return clgic.Getallfact(id);
+            yield return clgic.GetRndmFact(id);
+            
             //return "value";
         }
 
-        //// POST api/<UserController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // POST api/<UserController>
+        // Add new fact
+        // Returns list of facts,
+        [HttpPost]
+        public IEnumerable<string> Post([FromBody] string value)
+        {
+            CatLogic clgic = new CatLogic();
+            yield return clgic.AddFact();
+        }
 
         //// PUT api/<UserController>/5
         //[HttpPut("{id}")]
