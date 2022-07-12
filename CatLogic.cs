@@ -54,7 +54,7 @@ namespace CatFacts
             //return allFacts;
 
         }
-        public List<Fact> AddFact(Fact fact)
+        public List<Fact> AddFact(Fact ft)
         {
 
             List<Fact> source = new List<Fact>();
@@ -63,7 +63,8 @@ namespace CatFacts
                 string json = r.ReadToEnd();
                 source = JsonSerializer.Deserialize<List<Fact>>(json);
             }
-            source.Add(fact);
+            ft.length = ft.fact.Length;
+            source.Add(ft);
             string jsonString = JsonSerializer.Serialize(source, new JsonSerializerOptions() { WriteIndented = true });
             using (StreamWriter outputFile = new StreamWriter("CatFacts.json"))
             {
